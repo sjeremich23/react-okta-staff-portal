@@ -1,4 +1,6 @@
 import React, { StrictMode } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import ReactDOM from "react-dom";
 
 import App from "./App";
@@ -8,9 +10,11 @@ import "./styles/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+  <Router>
+    <StrictMode>
+      <App />
+    </StrictMode>
+  </Router>,
   document.getElementById("root")
 );
 

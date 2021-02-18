@@ -1,13 +1,21 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Security } from "@okta/okta-react";
+
+import { config } from "./config/oktaConfig";
 import { RouterConfig } from "./navigation/router";
 
 function App() {
+  const history = useHistory();
+  const onAuthRequired = () => {
+    history.push("/login");
+  };
+
   return (
     <>
-      <Router>
+      <Security {...config} onAuthRequired={onAuthRequired}>
         <RouterConfig />
-      </Router>
+      </Security>
     </>
   );
 }

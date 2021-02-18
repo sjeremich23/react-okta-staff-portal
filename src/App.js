@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { Security } from "@okta/okta-react";
+
+import { config } from "./config/oktaConfig";
+import { RouterConfig } from "./navigation/router";
 
 function App() {
+  const history = useHistory();
+  const onAuthRequired = () => {
+    history.push("/login");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Security {...config} onAuthRequired={onAuthRequired}>
+      <RouterConfig />
+    </Security>
   );
 }
 
